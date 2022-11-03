@@ -1,0 +1,49 @@
+﻿@using bansach.Models
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+<table align="center" border="1">
+    <tr style="text-align:center;font-weight:bold">
+        <td>Mã sách</td>
+        <td>Tên sách</td>
+        <td>Ảnh bìa</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Thành tiền</td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+        <td width="50px"></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center;font-weight:bold">
+            <td>@item.iMaSach</td>
+            <td>@item.tTenSach</td>
+            <td><img scr="~/images/@item.tBiaSach"></td>
+            @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @iMaSP = item.iMaSach }))
+            {
+                <td><input type="number" min="1" name="txtSoLuong" value="@item.iSoLuong" /></td>
+                <td>@string.Format("{0:0,0}", item.dDongGia)</td>
+                <td>@string.Format("{0:0,0}", item.dThanhTien)</td>
+                <td><a href="@Url.Action("ChiTiet","BookStore",new {id=item.iMaSach})">Chi tiết</a></td>
+                <td>@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSP = item.iMaSach })</td>
+                <td><input type="submit" value="Cập nhật" /></td>
+            }
+
+        </tr>
+    }
+    <tr style="font-weight:bold;text-align:right;color:red">
+        <td colspan="4">Số lượng:@ViewBag.Tongsoluong</td>
+        <td colspan="4">Tổng tiền:@String.Format("{0:0,0}", ViewBag.Tongtien) VND</td>
+    </tr>
+    <tr style="font-weight:bold;text-align:right;color:blue">
+        <td colspan="9">@Html.ActionLink("Xóa giỏ hàng", "XoaTatcaGiohang")</td>
+    </tr>
+    <tr style="font-weight:bold;text-align:center;color:blue">
+        <td colspan="9">@Html.ActionLink("ĐẶT HÀNG", "DatHang", "GioHang")</td>
+    </tr>
+</table>
+

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<bansach.Models.CT_DonDatHang>
+
+@{
+    ViewBag.Title = "CTHoaDon";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>CHI TIẾT HÓA ĐƠN</h2>
+
+
+@foreach (var m in ViewBag.Main)
+{
+    <h3>Mã hóa đơn:@m.hd.MaGioHang</h3>
+    <h3>Tên khách hàng:@m.kh.HoVaTenKH</h3>
+}
+<table class="table table-striped">
+    <tr>
+        <th>Số TT</th>
+        <th>Tên sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+    </tr>
+    @{
+        double tongtien = 0;
+        int i = 0;
+    }
+    @foreach (var item in ViewBag.Sub)
+    {
+        i++;
+        tongtien += (Convert.ToDouble(@item.cthd.SoLuong) * Convert.ToDouble(@item.cthd.GiaTien));
+        <tr>
+            <td>@i</td>
+            <td>@item.sach.TenSach</td>
+            <td>@item.cthd.SoLuong</td>
+            <td>@String.Format("{0:0,##0}", item.sach.GiaBan)</td>
+            <td>@String.Format("{0:0,##0}", item.ThanhTien)</td>
+        </tr>
+    }
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Tổng tiền:</th>
+        <td><text>@String.Format("{0:0,##0}", tongtien)</text></td>
+    </tr>
+</table>

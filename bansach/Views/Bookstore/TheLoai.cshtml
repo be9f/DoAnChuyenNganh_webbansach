@@ -1,0 +1,8 @@
+﻿@model IEnumerable<bansach.Models.TheLoai>
+<p class="lead">Thể loại</p>
+<div class="list-group">
+@foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoTheLoai","BookStore",new { id = item.MaTheLoai })" class="list-group-item">@item.TenTheLoai</a>
+    }
+</div>

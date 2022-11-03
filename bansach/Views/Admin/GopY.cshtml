@@ -1,0 +1,48 @@
+﻿@model IEnumerable<bansach.Models.GopY>
+
+@{
+    ViewBag.Title = "GopY";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ THƯ GÓP Ý</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Nội dung
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDungGopY)
+        </td>
+        <td>
+            @Html.ActionLink("Chi Tiết", "Chitietgopy", new { id=item.MaGY }) |
+            @Html.ActionLink("Xóa", "XoaGopY", new { id=item.MaGY })
+        </td>
+    </tr>
+}
+
+</table>

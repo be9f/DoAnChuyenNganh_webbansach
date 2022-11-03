@@ -1,0 +1,31 @@
+﻿@using bansach.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="row">
+    @foreach (var sach in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("ChiTiet", "BookStore", new { id = sach.MaSach })" />
+                <img alt="@sach.TenSach" src="~/HinhSanPham/@sach.BiaSach" height="200" width="100" />
+                <div>
+                    <h4 style="text-align:center">@sach.TenSach</h4>
+                    <p></p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">@sach.GiaBan VND</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

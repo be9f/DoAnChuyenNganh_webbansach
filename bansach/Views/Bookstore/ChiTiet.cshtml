@@ -1,0 +1,40 @@
+﻿<style type="text/css">
+    #DatMua a {
+        clear: both;
+        background-color: red;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: right;
+        text-align: center;
+        padding-top: 10px;
+        text-decoration: none;
+        font-weight: bold
+    }
+</style>
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h3>Thông tin về sách</h3>
+<div>
+    <div style="width:40%; float: left;border-left:dotted 1px;border-color:azure">
+        <img src="~/HinhSanPham/@Model.BiaSach" width="100%" />
+        
+    </div>
+    <div style="width: 60%; float: left;padding:10px">
+        <p style="font-weight:bold">Tên sách:<span style="color: #7c1158; font-size: 20pt">@Model.TenSach</span></p>
+        <h4 style="text-align:justify"><span style="font-weight:bold">Tác giả:@Model.TacGia</h4>
+        <h4 style="text-align:justify"><span style="font-weight:bold">Thể loại:@Model.TheLoai.TenTheLoai</h4>
+        <h4 style="text-align:justify"><span style="font-weight:bold">Mô tả sách:@Model.MoTa</h4>
+        <p style="font-weight:bold">Giá:<span style="color:red;font-size:16pt">@Model.GiaBan VNG</span></p>
+    </div>
+    <div>
+        <div id="DatMua">
+            <a href="@Url.Action("ThemGioHang", "GioHang", new { @iMaSach = @Model.MaSach, @strURL=Request.Url.ToString() })" @*class="list-group-item"*@>ĐẶT MUA</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<bansach.Models.TheLoai>
+
+@{
+    ViewBag.Title = "TheLoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ THỂ LOẠI</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Themtheloai")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Thể loại
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTheLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Xóa", "Xoatheloai", new { id=item.MaTheLoai })
+        </td>
+    </tr>
+}
+
+</table>
